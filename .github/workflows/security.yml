@@ -13,7 +13,17 @@ jobs:
       run: |
         echo "# Add the brew tap to your local machine"
         brew tap veracode/tap 
+        
         echo "# Install the tool"
         brew install gen-ir 
+        
         echo "xcode build"
         xcodebuild clean
+        xcodebuild archive -project FSNotes.xcodeproj -scheme FSNotes -configuration Debug -destination generic/platform=iOS -archivePath FSNotes.xcarchive DEBUG_INFORMATION_FORMAT=dwarf-with-dsym ENABLE_BITCODE=NO > build_log.txt
+        
+        echo "veracode gen-ir"
+        gen-ir build_log.txt FSNotes.xcarchive
+        
+        echo "zip xarchive"
+        zip -r FSNotes.zip MyApp.xcarchive
+        zipinfo FSNotes.zip
