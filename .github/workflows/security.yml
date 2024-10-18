@@ -1,0 +1,19 @@
+name: security-action
+on:
+  push:
+    branches: [feature/veracode-scan]
+
+jobs:
+  build:
+    name: build
+    runs-on: macos-latest 
+    steps:
+    - uses: actions/checkout@v4
+    - name: veracode gen-ir and XCode build
+      run: |
+        echo "# Add the brew tap to your local machine"
+        brew tap veracode/tap 
+        echo "# Install the tool"
+        brew install gen-ir 
+        echo "xcode build"
+        xcodebuild clean
