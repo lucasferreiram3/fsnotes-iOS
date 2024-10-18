@@ -19,7 +19,7 @@ jobs:
         
         echo "xcode build"
         xcodebuild clean
-        xcodebuild archive -workspace FSNotes.xcworkspace -scheme FSNotes -destination 'platform=macOS,name=Any Mac' -configuration Debug -archivePath FSNotes.xcarchive DEBUG_INFORMATION_FORMAT=dwarf-with-dsym ENABLE_BITCODE=NO > FSNotes.log.txt
+        xcodebuild archive -workspace FSNotes.xcworkspace -scheme FSNotes -destination 'platform=macOS,arch=x86_64,name=Any Mac' -configuration Debug -archivePath FSNotes.xcarchive DEBUG_INFORMATION_FORMAT=dwarf-with-dsym ENABLE_BITCODE=NO > FSNotes.log.txt
         
         echo "veracode gen-ir"
         gen-ir FSNotes.log.txt FSNotes.xcarchive
